@@ -2,6 +2,8 @@ package com.yuandu.gateway.filter;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
+import com.yuandu.common.exceptions.YuanduBaseException;
+import com.yuandu.common.exceptions.YuanduExceptionCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,8 +38,9 @@ public class AccessSignFilter extends ZuulFilter {
             log.warn("access token is empty");
             ctx.setSendZuulResponse(false);
             ctx.setResponseStatusCode(401);
-            return null;
+            YuanduBaseException.throwException(YuanduExceptionCode.ACCESS_TOKEN_IS_NULL);
         }
+
         log.info("access token ok");
         return null;
     }

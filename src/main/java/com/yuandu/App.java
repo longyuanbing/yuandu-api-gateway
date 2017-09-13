@@ -1,9 +1,9 @@
 package com.yuandu;
 
 import com.yuandu.gateway.filter.AccessSignFilter;
+import com.yuandu.gateway.filter.ErrorFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
 
@@ -21,4 +21,10 @@ public class App {
     public AccessSignFilter accessSignFilter() {
         return new AccessSignFilter();
     }
+
+    @Bean
+    public ErrorFilter errorFilter() {
+        return new ErrorFilter();
+    }
+
 }
